@@ -19,7 +19,7 @@ npm install @sid/use-css
 #### usage
 
 ```js
-import useCSS from 'use-timeout'
+import useCSS from 'use-css'
 
 function Oopsy(props) {
   const className = useCSS(`
