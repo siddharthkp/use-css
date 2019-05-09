@@ -11,7 +11,7 @@
 #### install
 
 ```
-npm install @sid/use-css
+npm install use-css
 ```
 
 &nbsp;
@@ -19,7 +19,7 @@ npm install @sid/use-css
 #### usage
 
 ```js
-import useCSS from '@sid/use-css'
+import useCSS from 'use-css'
 
 function Oopsy(props) {
   const className = useCSS(`

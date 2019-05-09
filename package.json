@@ -1,6 +1,6 @@
 {
-  "name": "@sid/use-css",
-  "version": "0.0.1",
+  "name": "use-css",
+  "version": "0.0.2",
   "description": "Silly React hook for CSS",
   "main": "dist.js",
   "scripts": {
