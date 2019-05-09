@@ -1,52 +1,52 @@
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var count = 0;
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var hash = _interopDefault(require('@emotion/hash'));
+var stylis = _interopDefault(require('stylis'));
+
+// create style tag once.
 createStyleTag();
 
 function useCSS(styles) {
-  var className = insertStyles(styles);
-  return className;
-}
-
-function createStyleTag() {
-  var container = document.head.querySelector('#usecss');
-
-  if (!container) {
-    var _container = document.createElement('style');
-
-    _container.id = 'usecss';
-    document.head.append(_container);
-  }
-
-  return container;
-}
-
-var stylesArray = [];
-
-function getExistingClassName(styles) {
-  var existingStyles = stylesArray.find(function (pair) {
-    return pair.styles === styles;
-  });
-  if (existingStyles) return existingStyles.className;else return false;
+  const className = insertStyles(styles);
+  return className
 }
 
 function insertStyles(styles) {
-  var existingClassName = getExistingClassName(styles);
-  if (existingClassName) return existingClassName;
-  var className = 'c' + count++;
-  var raw = ".".concat(className, " {").concat(styles, "}");
-  stylesArray.push({
-    className: className,
-    styles: styles
-  });
-  var container = document.head.querySelector('#usecss');
+  const className = getClassName(styles);
+
+  // skip if these styles are already inserted
+  if (isAlreadyInserted(className)) return
+
+  insertedClasses.push(className);
+  const container = document.head.querySelector('#usecss');
+
+  const raw = stylis(`.` + className, styles);
   container.append(raw);
-  return className;
+
+  return className
 }
 
-var _default = useCSS;
-exports.default = _default;
+const insertedClasses = [];
+function isAlreadyInserted(className) {
+  return insertedClasses.find(c => c === className)
+}
+
+function getClassName(styles) {
+  return 'c' + hash(styles)
+}
+
+function createStyleTag() {
+  const container = document.head.querySelector('#usecss');
+
+  if (!container) {
+    const container = document.createElement('style');
+    container.id = 'usecss';
+    document.head.append(container);
+  }
+
+  return container
+}
+
+module.exports = useCSS;

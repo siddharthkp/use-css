@@ -1,9 +1,36 @@
-let count = 0
+import hash from '@emotion/hash'
+import stylis from 'stylis'
+
+// create style tag once.
 createStyleTag()
 
 function useCSS(styles) {
   const className = insertStyles(styles)
   return className
+}
+
+function insertStyles(styles) {
+  const className = getClassName(styles)
+
+  // skip if these styles are already inserted
+  if (isAlreadyInserted(className)) return
+
+  insertedClasses.push(className)
+  const container = document.head.querySelector('#usecss')
+
+  const raw = stylis(`.` + className, styles)
+  container.append(raw)
+
+  return className
+}
+
+const insertedClasses = []
+function isAlreadyInserted(className) {
+  return insertedClasses.find(c => c === className)
+}
+
+function getClassName(styles) {
+  return 'c' + hash(styles)
 }
 
 function createStyleTag() {
@@ -16,33 +43,6 @@ function createStyleTag() {
   }
 
   return container
-}
-
-const stylesArray = []
-
-function getExistingClassName(styles) {
-  const existingStyles = stylesArray.find(function(pair) {
-    return pair.styles === styles
-  })
-
-  if (existingStyles) return existingStyles.className
-  else return false
-}
-
-function insertStyles(styles) {
-  const existingClassName = getExistingClassName(styles)
-
-  if (existingClassName) return existingClassName
-
-  const className = 'c' + count++
-
-  const raw = `.${className} {${styles}}`
-  stylesArray.push({ className, styles })
-
-  const container = document.head.querySelector('#usecss')
-  container.append(raw)
-
-  return className
 }
 
 export default useCSS
