@@ -26,6 +26,9 @@ function Oopsy(props) {
     font-size: 21px;
     font-style: italic;
     color: ${props.color};
+    &:hover {
+      font-weight: bold;
+    }
   `)
 
   return <div className={className}>because why not?</div>
