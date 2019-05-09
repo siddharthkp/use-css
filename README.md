@@ -3,7 +3,7 @@
   <br><br>
   <b>Silly React hook for CSS</b>
   <br><br/>
-  <a href="https://codesandbox.io/s/5xrrwp8nlp">Demo on CodeSandbox</a>
+  <a href="https://codesandbox.io/s/9218rxv4wo">Demo on CodeSandbox</a>
 </p>
 
 &nbsp;
