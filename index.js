@@ -13,7 +13,7 @@ function insertStyles(styles) {
   const className = getClassName(styles)
 
   // skip if these styles are already inserted
-  if (isAlreadyInserted(className)) return
+  if (isAlreadyInserted(className)) return className
 
   insertedClasses.push(className)
   const container = document.head.querySelector('#usecss')
