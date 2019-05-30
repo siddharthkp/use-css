@@ -1,6 +1,6 @@
 {
   "name": "use-css",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Silly React hook for CSS",
   "main": "dist.js",
   "scripts": {
